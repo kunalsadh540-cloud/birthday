@@ -1,130 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harshita Birthday</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="birthday css.css">
 
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@400;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap"
         rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
-    <div id="wrapper">
 
-        <div class="content">
-            <div class="left">
-                <div class="title">
-                    <h1>Happy Birthday 🎉</h1>
-                </div>
+<div id="wrapper">
 
-                <div class="date__of__birth">
-                    <span></span>
-                </div>
-
-                <div class="btn">
-                    <button id="btn__letter">
-                        <div class="mail">
-                            Click Here Harshita
-                            <i class="fa-regular fa-envelope"></i>
-                        </div>
-                    </button>
-                </div>
+    <div class="content">
+        <div class="left">
+            <div class="title">
+                <h1>Happy Birthday 🎉</h1>
             </div>
 
-            <div class="right">
-                <div class="box__account">
-                    <div class="image">
-                        <img src="./images/unnamed.png" alt="">
-                    </div>
-                    <div class="name">
-                        <i class="fa-solid fa-heart"></i>
-                        <span>Dear Harshita</span>
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
+            <div class="date__of__birth">
+                <span></span>
+            </div>
+
+            <div class="btn">
+                <button id="btn__letter">
+                    Click Here Harshita
+                    <i class="fa-regular fa-envelope"></i>
+                </button>
             </div>
         </div>
 
-        <!-- MAIL POPUP -->
-        <div class="boxMail">
-            <i class="fa-solid fa-xmark close"></i>
-
-            <div class="boxMail-container">
-
-                <div class="card1">
-                    <h3>Happy Birthday 💖</h3>
+        <div class="right">
+            <div class="box__account">
+                <div class="image">
+                    <img src="./images/unnamed.png" alt="Birthday Image">
                 </div>
-
-                <div class="card2">
-                    <div class="card2-content">
-                        <h3>To You!</h3>
-
-                        <!-- TEXT WILL TYPE HERE -->
-                        <p class="text__letter"></p>
-
-                    </div>
+                <div class="name">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Dear Harshita</span>
+                    <i class="fa-solid fa-heart"></i>
                 </div>
-
             </div>
         </div>
-
     </div>
 
-</body>
+    <!-- POPUP -->
+    <div class="boxMail">
+        <i class="fa-solid fa-xmark close"></i>
+
+        <div class="boxMail-container">
+            <div class="card1">
+                <h3>Happy Birthday 💖</h3>
+            </div>
+
+            <div class="card2">
+                <div class="card2-content">
+                    <h3>To You!</h3>
+                    <p class="text__letter"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <script>
+let datetxt = "2 March";
+let datatxtletter = "May this year unlock new opportunities, bigger goals and stronger confidence. You're capable of more than you think. Remember, you are not getting older — just more iconic. May your crush finally notice you this year. Happy Birthday to you 💕";
 
-    let datetxt = "2 March";
-    let datatxtletter = "May this year unlock new opportunities, bigger goals and stronger confidence. You're capable of more than you think. Remember, you are not getting older — just more iconic. May your crush finally notice you this year. Happy Birthday to you 💕";
+let charArrDate = datetxt.split('');
+let charArrLetter = datatxtletter.split('');
 
-    let charArrDate = datetxt.split('');
-    let charArrLetter = datatxtletter.split('');
+let currentIndex = 0;
+let currentIndexLetter = 0;
 
-    let currentIndex = 0;
-    let currentIndexLetter = 0;
+let date__of__birth = document.querySelector(".date__of__birth span");
+let text__letter = document.querySelector(".text__letter");
 
-    let date__of__birth = document.querySelector(".date__of__birth span");
-    let text__letter = document.querySelector(".text__letter");
+/* Date typing */
+let dateInterval = setInterval(function () {
+    if (currentIndex < charArrDate.length) {
+        date__of__birth.textContent += charArrDate[currentIndex];
+        currentIndex++;
+    } else {
+        clearInterval(dateInterval);
+    }
+}, 100);
 
-    /* Date Typing Effect */
-    setInterval(function () {
-        if (currentIndex < charArrDate.length) {
-            date__of__birth.textContent += charArrDate[currentIndex];
-            currentIndex++;
+/* Open popup */
+document.getElementById("btn__letter").onclick = function () {
+    document.querySelector(".boxMail").classList.add("active");
+
+    let typing = setInterval(function () {
+        if (currentIndexLetter < charArrLetter.length) {
+            text__letter.textContent += charArrLetter[currentIndexLetter];
+            currentIndexLetter++;
+        } else {
+            clearInterval(typing);
         }
-    }, 100);
+    }, 40);
+};
 
-    /* Open Mail */
-    document.querySelector("#btn__letter").onclick = function () {
-        document.querySelector(".boxMail").classList.add("active");
-
-        let typing = setInterval(function () {
-            if (currentIndexLetter < charArrLetter.length) {
-                text__letter.textContent += charArrLetter[currentIndexLetter];
-                currentIndexLetter++;
-            } else {
-                clearInterval(typing);
-            }
-        }, 40);
-    };
-
-    /* Close Mail */
-    document.querySelector(".close").onclick = function () {
-        document.querySelector(".boxMail").classList.remove("active");
-        text__letter.textContent = "";
-        currentIndexLetter = 0;
-    };
-
+/* Close popup */
+document.querySelector(".close").onclick = function () {
+    document.querySelector(".boxMail").classList.remove("active");
+    text__letter.textContent = "";
+    currentIndexLetter = 0;
+};
 </script>
 
+</body>
 </html>
